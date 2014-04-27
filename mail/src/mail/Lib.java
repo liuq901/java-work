@@ -44,9 +44,8 @@ public class Lib {
 		console.writer().println();
 		console.flush();
 	}
-	
-	static void error(String s) throws Exception
-	{
+
+	static void error(String s) throws Exception {
 		throw new Exception(s);
 	}
 
@@ -70,13 +69,21 @@ public class Lib {
 		out.flush();
 	}
 
-	static String receive() throws Exception {
-		return in.readLine();
+	static String receive() {
+		try {
+			return (in.readLine());
+		} catch (Exception e) {
+			return ("");
+		}
+	}
+
+	static String[] receiveString() {
+		return (receive().split(" "));
 	}
 
 	static int receiveInt() {
 		try {
-			return Integer.parseInt(receive().split(" ")[0]);
+			return Integer.parseInt(receiveString()[0]);
 		} catch (Exception e) {
 			return -1;
 		}

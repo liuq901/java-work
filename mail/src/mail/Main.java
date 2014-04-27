@@ -9,20 +9,6 @@ public class Main {
 		Information information = new Information();
 		Sender sender = new Sender();
 		Receiver receiver = new Receiver();
-
-		boolean debug = true;
-		if (debug) {
-			help();
-			information.username = "liuq901@126.com";
-			information.password = "7894561230";
-			information.smtpServer = "smtp.126.com";
-			information.smtpPort = 25;
-			information.imapServer = "imap.126.com";
-			information.imapPort = 143;
-			sender.send(information);
-			return;
-		}
-
 		Lib.println();
 		Lib.println("Welcome to use the simple e-mail client.");
 		Lib.println();
@@ -58,10 +44,10 @@ public class Main {
 		information.smtpServer = Lib.next();
 		Lib.print("Please input the SMTP port number (default 25): ");
 		information.smtpPort = Lib.nextInt();
-		Lib.print("Please input the IMAP server: ");
-		information.imapServer = Lib.next();
-		Lib.print("Please input the IMAP port number (default 143): ");
-		information.imapPort = Lib.nextInt();
+		Lib.print("Please input the POP3 server: ");
+		information.pop3Server = Lib.next();
+		Lib.print("Please input the POP3 port number (default 110): ");
+		information.pop3Port = Lib.nextInt();
 	}
 
 	void help() {
