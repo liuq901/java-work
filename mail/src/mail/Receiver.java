@@ -19,27 +19,27 @@ public class Receiver {
 	}
 
 	void login(String username, String password) throws Exception {
-		if (!Lib.receiveString()[0].equals("+OK"))
+		if (!Lib.receiveString().equals("+OK"))
 			Lib.error("Can not connect to server.");
 		Lib.send("user " + username);
-		if (!Lib.receiveString()[0].equals("+OK"))
+		if (!Lib.receiveString().equals("+OK"))
 			Lib.error("Invalid username.");
 		Lib.send("pass " + password);
-		if (!Lib.receiveString()[0].equals("+OK"))
+		if (!Lib.receiveString().equals("+OK"))
 			Lib.error("Wrong password.");
 	}
 
 	int stat() throws Exception {
 		Lib.send("stat");
-		String[] tmp = Lib.receiveString();
-		if (!tmp[0].equals("+OK"))
-			Lib.error("Failed to get mail count");
-		return Integer.parseInt(tmp[1]);
+		if (!Lib.receiveString().equals("+OK"))
+			Lib.error("Failed to get mail count.");
+		Lib.send("stat");
+		return Integer.parseInt(Lib.receive().split(" ")[1]);
 	}
 
 	void retr(int number) throws Exception {
 		Lib.send("retr " + number);
-		if (!Lib.receiveString()[0].equals("+OK"))
+		if (!Lib.receiveString().equals("+OK"))
 			Lib.error("Invalid mail number.");
 		boolean body = false;
 		while (true) {
@@ -61,7 +61,7 @@ public class Receiver {
 
 	void quit() throws Exception {
 		Lib.send("quit");
-		if (!Lib.receiveString()[0].equals("+OK"))
+		if (!Lib.receiveString().equals("+OK"))
 			Lib.error("Quit unsuccessfully.");
 	}
 }

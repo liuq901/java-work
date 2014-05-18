@@ -54,14 +54,14 @@ public class Lib {
 			socket = new Socket(server, port);
 			in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
-			out = new PrintWriter((socket.getOutputStream()));
+			out = new PrintWriter(socket.getOutputStream());
 		} catch (Exception e) {
 			error("Establish socket failed.");
 		}
 	}
 
 	static String encode(String s) {
-		return (encoder.encode(s.getBytes()));
+		return encoder.encode(s.getBytes());
 	}
 
 	static void send(String s) {
@@ -71,19 +71,19 @@ public class Lib {
 
 	static String receive() {
 		try {
-			return (in.readLine());
+			return in.readLine();
 		} catch (Exception e) {
-			return ("");
+			return "";
 		}
 	}
 
-	static String[] receiveString() {
-		return (receive().split(" "));
+	static String receiveString() {
+		return receive().split(" ")[0];
 	}
 
 	static int receiveInt() {
 		try {
-			return Integer.parseInt(receiveString()[0]);
+			return Integer.parseInt(receiveString());
 		} catch (Exception e) {
 			return -1;
 		}

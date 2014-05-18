@@ -63,7 +63,7 @@ public class Sender {
 		Lib.send("");
 		Lib.println("Please input your e-mail content, end with a line only contains a single dot.");
 		while (true) {
-			Lib.print(">>> ");
+			Lib.print("> ");
 			String content = Lib.next();
 			Lib.send(content);
 			if (content.equals("."))
